@@ -1,0 +1,20 @@
+.env
+
+# Ignora cualquier carpeta que se llame venv, venv_visual, etc.
+venv/
+
+
+# Archivos de Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de Sistema Operativo
+
+# Windows
+Thumbs.db
+
+# Carpetas de IDEs (opcional, pero buena práctica)
+.vscode/
+.idea/

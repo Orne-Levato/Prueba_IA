@@ -1,0 +1,5 @@
+openai-whisper
+moviepy
+scenedetect[opencv]
+google-generativeai
+python-dotenv
