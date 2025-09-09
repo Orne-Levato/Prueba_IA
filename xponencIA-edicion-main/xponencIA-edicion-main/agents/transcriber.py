@@ -5,6 +5,15 @@ from moviepy.editor import VideoFileClip, AudioFileClip
 import json
 import time
 
+#agregado de Orne 2 --
+
+try:
+    from moviepy.editor import VideoFileClip
+except ImportError:
+    print("No se encontró moviepy, algunas funciones no estarán disponibles.")
+    VideoFileClip = None
+
+
 MODEL_SIZE = "large-v3"
 
 def transcribe_clip_detailed(clip_path: str, output_dir: str) -> str:
@@ -56,3 +65,4 @@ def transcribe_clip_detailed(clip_path: str, output_dir: str) -> str:
 
     print(f"--- [Transcriptor] Finalizado para: {os.path.basename(clip_path)} ---")
     return output_json_path
+
