@@ -9,7 +9,11 @@ import time
 
 MODEL_SIZE = "large-v3"
 
+
+
+
 def transcribe_clip_detailed(clip_path: str, output_dir: str) -> str:
+    
     print(f"--- [Transcriptor] Iniciando para: {os.path.basename(clip_path)} ---")
 
     if not os.path.exists(clip_path):
@@ -60,16 +64,3 @@ def transcribe_clip_detailed(clip_path: str, output_dir: str) -> str:
     return output_json_path
 
 
-
-#-----------------
-# agregado para testear desde acá
-
-import ffmpeg
-
-# Ejemplo para convertir un video
-(
-    ffmpeg
-    .input('video_prueba.mp4')
-    .output('video_prueba.srt')
-    .run()
-)
