@@ -3,6 +3,7 @@ import os
 import time
 import json
 from moviepy.editor import VideoFileClip
+#from moviepy import VideoFileClip
 import google.generativeai as genai
 from dotenv import load_dotenv
 
@@ -54,8 +55,17 @@ if __name__ == '__main__':
         print(f"¡ERROR! Hay más de un archivo en {INPUT_DIR}. Deja solo uno.")
         exit()
 
+
     input_filename = input_files[0]
-    source_path = source_path = os.path.abspath(os.path.join(INPUT_DIR, input_filename)).replace("\\", "/") #modificación hehca por Orne L.
+
+    # Convertir a ruta absoluta y reemplazar \ por / para compatibilidad con FFmpeg
+    source_path = os.path.abspath(os.path.join(INPUT_DIR, input_filename))
+    source_path = source_path.replace("\\", "/")
+
+    print("Archivo a procesar:", source_path)
+    print("Existe?", os.path.exists(source_path))
+
+    #modificación hehca por Orne L.
     # Esto convierte la ruta relativa en ruta absoluta, que FFmpeg entiende sin problemas.
     # y no hay problema para que lo encuentre.
 
