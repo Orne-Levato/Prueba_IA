@@ -55,7 +55,10 @@ if __name__ == '__main__':
         exit()
 
     input_filename = input_files[0]
-    source_path = os.path.join(INPUT_DIR, input_filename)
+    source_path = source_path = os.path.abspath(os.path.join(INPUT_DIR, input_filename)).replace("\\", "/") #modificación hehca por Orne L.
+    # Esto convierte la ruta relativa en ruta absoluta, que FFmpeg entiende sin problemas.
+    # y no hay problema para que lo encuentre.
+
 
     # 1. Transcripción Global
     print("--- [Orquestador] Iniciando transcripción del video completo... ---")
