@@ -129,3 +129,30 @@ if __name__ == '__main__':
         
     print(f"\n--- PROCESO COMPLETADO ---")
     print(f"El plan de edición multimodal ha sido guardado en: {plan_path}")
+
+
+    # ACÁ LO UNO CON editor.py
+
+    #éste bloque lee el plan de edición que ya generaste
+    #Extraer los segmentos con timestamps (start y end).
+    #Manda esos timestamps a editor.py para que:
+    #Cree marcadores en la timeline de Resolve y haga cortes en esos puntos.
+
+    # . Aplicar plan en DaVinci Resolve
+from agents import editor
+
+with open(plan_path, "r", encoding="utf-8") as f:
+    plan = json.load(f)
+
+# Suponiendo que el plan tiene segmentos con "start" y "end"
+segments = plan["plan_de_edicion"][0].get("segments", [])
+
+if segments:
+    print("--- [Orquestador] Creando marcadores en Resolve ---")
+    editor.agregar_marcadores(
+        [{"time": s["start"], "label": f"Inicio {i+1}"} for i, s in enumerate(segments)]
+        + [{"time": s["end"], "label": f"Fin {i+1}"} for i, s in enumerate(segments)]
+    )
+
+    print("--- [Orquestador] Haciendo cortes en Resolve ---")
+    editor.hacer_cortes(segments)
